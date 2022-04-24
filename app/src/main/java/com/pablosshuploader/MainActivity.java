@@ -80,9 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
                 String[] connData = new String[]{user, pass, host, servPath};
 
-                //TODO testing
-                //File newF = new File(myFilePath);
-                //appText.setText(myFilePath+" File exists: "+newF.exists());
                 SSHExporter.tryUploadFile(appText,MainActivity.this,connData,tempFileToUpload,nameOfFileToUpload);
             }
         });
@@ -115,11 +112,10 @@ public class MainActivity extends AppCompatActivity {
             try {
                 tempFileToUpload = stream2file(getContentResolver().openInputStream(selectedFileUri));
                 uploadButton.setVisibility(View.VISIBLE);
-                appText.setText(tempFileToUpload.getName());
+                appText.setText(selectedFileUri.getPath());
             }catch (Exception ex){
                 appText.setText("ERROR: "+ex.toString());
             }
-
         }
     }
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
